@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <title>Python-kurs: Hovedside</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --ink: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+      --code-bg: #0b1020;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background: var(--bg); color: var(--ink); }
+    header, main, footer { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: var(--muted); }
+    nav { background: #0b1326; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .navwrap { max-width: 1000px; margin: 0 auto; padding: 10px 20px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .navwrap a { color: #cbd5e1; text-decoration: none; padding: 6px 10px; border-radius: 6px; }
+    .navwrap a:hover { background: rgba(255,255,255,0.06); color: white; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; }
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0 0 12px; color: var(--muted); }
+    .card a { display: inline-block; background: linear-gradient(160deg, #22c55e, #16a34a); color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .tip { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #c7f9cc; padding: 8px 10px; border-radius: 8px; }
+    footer { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Python-kurs: Hovedside</h1>
+    <p>Start her og klikk deg inn til hver leksjon.</p>
+  </header>
+
+  <nav>
+    <div class="navwrap">
+      <a href="variabler_og_vilkar.html">Variabler og vilkår</a>
+      <a href="repetisjon_datatyper_lower.html">Repetisjon + Datatyper og .lower()</a>
+      <a href="kommende_strengmetoder_logikk.html">Neste: Strengmetoder og logikk</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <h3>Leksjon 1: Variabler og vilkår</h3>
+        <p>Grunnleggende syntaks, variabler, if / elif / else, og forskjellen på strenger og tall.</p>
+        <a href="variabler_og_vilkar.html">Gå til leksjonen</a>
+      </article>
+
+      <article class="card">
+        <h3>Leksjon 2: Repetisjon + Datatyper og .lower()</h3>
+        <p>Repetisjon av valg, introduksjon til str, int, float, bool, samt .lower() for brukervennlighet.</p>
+        <a href="repetisjon_datatyper_lower.html">Gå til leksjonen</a>
+      </article>
+
+      <article class="card">
+        <h3>Leksjon 3: Strengmetoder og logikk</h3>
+        <p>Videre arbeid med tekstmetoder (.strip(), .upper()) og logiske operatorer (and, or, not).</p>
+        <a href="kommende_strengmetoder_logikk.html">Forbered deg</a>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="tip">
+        Tips: Høyreklikk – Åpne i ny fane for å ha hovedsiden tilgjengelig mens leksjonene leses.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Python-intro for elever — naviger via menyen øverst.
+  </footer>
+</body>
+</html>

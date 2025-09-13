@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <title>Python: Repetisjon + Datatyper og .lower()</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; background: #0f172a; color: #e5e7eb; }
+    main { max-width: 950px; margin: 0 auto; padding: 24px; }
+    h1, h2 { margin: 0 0 12px; }
+    section { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin: 16px 0; }
+    p, li { line-height: 1.55; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: #0b1020; color: #d1d5db; padding: 12px; border-radius: 8px; overflow: auto; border: 1px solid rgba(255,255,255,0.08); }
+    .muted { color: #9ca3af; }
+    ul, ol { margin: 0 0 0 18px; padding: 0; }
+    .warn { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.35); border-radius: 8px; padding: 8px 10px; color: #fde68a; }
+    .error { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.35); border-radius: 8px; padding: 8px 10px; color: #fca5a5; }
+    .good { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); border-radius: 8px; padding: 8px 10px; color: #c7f9cc; }
+    .new { background: rgba(147,51,234,0.12); border: 1px solid rgba(147,51,234,0.35); border-radius: 8px; padding: 8px 10px; color: #e9d5ff; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .center { text-align: center; font-size: 1.1em; color: #22c55e; font-weight: 600; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Python: Repetisjon + Datatyper</h1>
+  <p class="muted">Repeterer variabler og vilkår, introduserer datatyper og .lower() metoden.</p>
+
+  <!-- REPETISJON AV FORRIGE TIME -->
+  <section>
+    <h2>🔄 Repetisjon: Variabler</h2>
+    <p>En variabel er som en etikett på en boks hvor vi lagrer verdier:</p>
+<pre><code># Lage variabler
+navn = "Anna"
+alder = 15
+høyde = 1.65
+
+# Bruke variabler
+print("Hei", navn)
+print("Du er", alder, "år gammel")
+</code></pre>
+    <div class="warn">Huskeregel: = er tilordning (gir en verdi), == er sammenligning (sjekker likhet).</div>
+  </section>
+
+  <section>
+    <h2>🔄 Repetisjon: if / elif / else</h2>
+    <div class="grid">
+<pre><code># Grunnstruktur
+if betingelse:
+    print("Dette skjer hvis sant")
+elif annen_betingelse:
+    print("Dette skjer hvis 2. er sant")
+else:
+    print("Dette skjer ellers")
+</code></pre>
+
+<pre><code># Eksempel
+poeng = 85
+if poeng >= 90:
+    print("Meget bra!")
+elif poeng >= 70:
+    print("Bra jobbet!")
+else:
+    print("Øv mer!")
+</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>🔄 Repetisjon: input() og strenger vs tall</h2>
+    <p><strong>Problemet vi oppdaget:</strong> input() gir alltid tekst, selv når vi skriver tall.</p>
+    
+    <div class="error">
+<pre><code># Dette fungerer IKKE som forventet:
+a = input("Tall: ")  # a blir "5" (tekst)
+b = input("Tall: ")  # b blir "10" (tekst)
+if a > b:            # "5" > "10" er True (alfabetisk!)
+    print("a er størst")
+</code></pre>
+    </div>
+
+    <div class="good">
+<pre><code># Løsning: Konverter til tall
+a_tekst = int(input("Tall: ")) # int() Tvinger python til å lese input som heltall
+b_tekst = int(input("Tall: ")) 
+if a > b:         # Nå sammenligner vi tall
+    print("a er størst")
+</code></pre>
+    </div>
+  </section>
+
+  <!-- NY LÆRDOM: DATATYPER -->
+  <div class="center">🆕 Ny lærdom: Datatyper</div>
+
+  <section>
+    <h2>Hva er datatyper?</h2>
+    <p>Python skiller mellom ulike <strong>typer</strong> data. De viktigste er:</p>
+    <div class="grid">
+      <div class="new">
+        <strong>str</strong> (string/streng)<br>
+        Tekst i anførselstegn<br>
+        <code>"Hei verden"</code>, <code>"123"</code>
+      </div>
+      <div class="new">
+        <strong>int</strong> (integer/heltall)<br>
+        Hele tall uten desimaler<br>
+        <code>42</code>, <code>-17</code>, <code>0</code>
+      </div>
+      <div class="new">
+        <strong>float</strong> (desimaltall)<br>
+        Tall med desimaler<br>
+        <code>3.14</code>, <code>-2.5</code>
+      </div>
+      <div class="new">
+        <strong>bool</strong> (boolean/sannhetsverdi)<br>
+        Sant eller usant<br>
+        <code>True</code>, <code>False</code>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sjekke datatype med type()</h2>
+<pre><code># Sjekk hvilken type en variabel har
+navn = "Anna"
+alder = 15
+høyde = 1.65
+er_student = True
+
+print(type(navn))      # &lt;class 'str'&gt;
+print(type(alder))     # &lt;class 'int'&gt;
+print(type(høyde))     # &lt;class 'float'&gt;
+print(type(er_student)) # &lt;class 'bool'&gt;
+
+# input() gir alltid str
+svar = input("Skriv noe: ")
+print(type(svar))      # &lt;class 'str'&gt; uansett hva du skriver
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Konvertere mellom datatyper</h2>
+    <div class="grid">
+<pre><code># Til streng
+tall = 42
+tekst = str(tall)
+print(tekst)  # "42" (nå er det tekst)
+
+# Til heltall
+tekst = "123"
+tall = int(tekst)
+print(tall)   # 123 (nå er det et tall)
+</code></pre>
+
+<pre><code># Til desimaltall
+tekst = "3.14"
+desimal = float(tekst)
+print(desimal) # 3.14
+
+# Til boolean (sjelden brukt)
+print(bool("tekst"))  # True
+print(bool(""))       # False
+print(bool(0))        # False
+</code></pre>
+    </div>
+  </section>
+
+  <!-- NY LÆRDOM: .lower() -->
+  <section>
+    <h2>Strengmetoder: .lower() for brukervennlighet</h2>
+    <p>Strenger har innebygde <strong>metoder</strong> (funksjoner). Den første vi lærer er <code>.lower()</code>:</p>
+
+<pre><code># .lower() gjør alle bokstaver små
+tekst = "HALLO VERDEN"
+liten_tekst = tekst.lower()
+print(liten_tekst)  # "hallo verden"
+
+# Nyttig for input:
+svar = input("Vil du fortsette? (ja/nei): ")
+svar_liten = svar.lower()
+if svar_liten == "ja":
+    print("OK, vi fortsetter!")
+elif svar_liten == "nei":
+    print("Vi stopper her.")
+</code></pre>
+
+    <div class="good">
+      <strong>Hvorfor .lower() er nyttig:</strong><br>
+      Brukere kan skrive "JA", "ja", "Ja" eller "jA" - alle blir til "ja" med .lower()
+    </div>
+  </section>
+
+  <section>
+    <h2>Sammenligning av strenger (alfabetisk)</h2>
+    <p>Strenger sammenlignes i alfabetisk rekkefølge, men store bokstaver kommer før små [7]:</p>
+
+<pre><code># Alfabetisk sammenligning
+print("a" < "b")        # True
+print("Anna" < "Bent")  # True
+print("A" < "a")        # True (store bokstaver først!)
+
+# Problem med stor/liten mix:
+svar1 = "JA"
+svar2 = "ja"
+print(svar1 == svar2)   # False - de er ulike!
+
+# Løsning med .lower():
+print(svar1.lower() == svar2.lower())  # True - begge blir "ja"
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Praktisk eksempel: Forbedret input</h2>
+    <div class="grid">
+<pre><code># Før (ikke robust):
+svar = input("Fortsette? (ja/nei): ")
+if svar == "ja":
+    print("OK!")
+# Fungerer bare hvis bruker skriver 
+# nøyaktig "ja" med små bokstaver
+</code></pre>
+
+<pre><code># Etter (robust):
+svar = input("Fortsette? (ja/nei): ").lower()
+if svar == "ja":
+    print("OK!")
+elif svar == "nei":
+    print("Stopper!")
+else:
+    print("Skriv 'ja' eller 'nei'")
+# Fungerer med JA, Ja, jA, JA osv.
+</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Oppgaver for å øve</h2>
+    <ol>
+      <li>Lag et program som ber om ditt navn, konverterer det til små bokstaver med .lower(), og hilser.</li>
+      <li>Be om to tall, konverter til int(), og sammenlign dem.</li>
+      <li>Lag en "ja/nei" spørring som fungerer uansett om brukeren skriver store eller små bokstaver.</li>
+      <li>Eksperimenter: Hva skjer hvis du bruker int() på tekst som ikke er et tall?</li>
+      <li>Bruk type() til å sjekke datatypen til ulike variabler du lager.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Oppsummering</h2>
+    <div class="new">
+      <strong>Det vi har lært:</strong>
+      <ul>
+        <li>Python har ulike datatyper: str, int, float, bool</li>
+        <li>input() gir alltid str - konverter med int() for tall</li>
+        <li>.lower() gjør strenger til små bokstaver</li>
+        <li>Strenger sammenlignes alfabetisk</li>
+        <li>type() viser datatypen til en variabel</li>
+      </ul>
+    </div>
+    
+    <div class="warn">
+      <strong>Neste gang:</strong> Flere strengmetoder (.strip(), .upper()), logiske operatorer (and, or, not), og kanskje løkker!
+    </div>
+  </section>
+</main>
+</body>
+</html>

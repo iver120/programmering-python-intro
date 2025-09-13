@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <title>Intro til løkker: while og for</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --code:#0b1020; --accent:#22c55e; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color: var(--ink); background: var(--bg); }
+    header, main, footer { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: var(--muted); }
+    a { color:#93c5fd; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display:inline-block; margin-top:8px; font-size:0.95rem; }
+    section { background: var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin:16px 0; }
+    h2 { margin: 0 0 10px; }
+    p, li { line-height: 1.6; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: var(--code); color:#d1d5db; padding:12px; border-radius:8px; overflow:auto; border:1px solid rgba(255,255,255,0.08); }
+    .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .tip { background: rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#c7f9cc; padding:8px 10px; border-radius:8px; }
+    .warn { background: rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#fde68a; padding:8px 10px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Intro til løkker: while og for</h1>
+    <p class="muted">Lær å gjenta kode med while og for-løkker, inkludert break og continue.</p>
+    <a class="back" href="index.html">← Til hovedsiden</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Hva er en løkke?</h2>
+      <p>En løkke gjør at kode kan kjøres mange ganger automatisk, i stedet for å skrive samme kode om og om igjen[158][161].</p>
+      <p>Python har to hovedtyper løkker:</p>
+      <ul>
+        <li><strong>while</strong> - kjører så lenge en betingelse er sann</li>
+        <li><strong>for</strong> - kjører et bestemt antall ganger eller over elementer i en samling</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>while-løkker</h2>
+      <p>En while-løkke sjekker en betingelse først, og kjører koden inne i løkka så lenge betingelsen er True[158][161].</p>
+      
+      <div class="grid">
+<pre><code># Grunnleggende while-løkke
+teller = 1
+while teller <= 3:
+    print("Runde", teller)
+    teller = teller + 1
+print("Ferdig!")
+
+# Utskrift:
+# Runde 1
+# Runde 2  
+# Runde 3
+# Ferdig!
+</code></pre>
+
+<pre><code># Løkke med input
+svar = ""
+while svar.lower() != "stopp":
+    svar = input("Skriv 'stopp' for å avslutte: ")
+    print("Du skrev:", svar)
+print("Takk for nå!")
+</code></pre>
+      </div>
+      
+      <div class="warn">Viktig: Husk å endre variabelen som sjekkes, ellers får du en uendelig løkke!</div>
+    </section>
+
+    <section>
+      <h2>for-løkker med range()</h2>
+      <p>for-løkker brukes når du vet hvor mange ganger noe skal kjøres. range() lager en sekvens av tall[163][167].</p>
+      
+      <div class="grid">
+<pre><code># for med range() - kjør 5 ganger
+for i in range(5):
+    print("Gang nummer", i)
+
+# Utskrift:
+# Gang nummer 0
+# Gang nummer 1
+# Gang nummer 2
+# Gang nummer 3
+# Gang nummer 4
+</code></pre>
+
+<pre><code># range() med start og stopp
+for tall in range(1, 4):
+    print("Tall:", tall)
+
+# Utskrift:
+# Tall: 1
+# Tall: 2
+# Tall: 3
+</code></pre>
+      </div>
+      
+      <div class="tip">range(5) gir tallene 0, 1, 2, 3, 4. range(1, 4) gir 1, 2, 3 (stopp-tallet er ikke med).</div>
+    </section>
+
+    <section>
+      <h2>for-løkker over tekst</h2>
+      <p>for-løkker kan også gå gjennom hver bokstav i en tekst[167]:</p>
+      
+<pre><code>navn = "Anna"
+for bokstav in navn:
+    print("Bokstav:", bokstav)
+
+# Utskrift:
+# Bokstav: A
+# Bokstav: n
+# Bokstav: n
+# Bokstav: a
+</code></pre>
+    </section>
+
+    <section>
+      <h2>break og continue</h2>
+      <p>break stopper løkka helt, continue hopper til neste runde[158][161].</p>
+      
+      <div class="grid">
+<pre><code># break - stopp løkka
+for i in range(10):
+    if i == 3:
+        break
+    print("Tall:", i)
+
+# Utskrift:
+# Tall: 0
+# Tall: 1
+# Tall: 2
+</code></pre>
+
+<pre><code># continue - hopp over
+for i in range(5):
+    if i == 2:
+        continue
+    print("Tall:", i)
+
+# Utskrift:
+# Tall: 0
+# Tall: 1
+# Tall: 3
+# Tall: 4
+</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Oppgaver</h2>
+      <ol>
+        <li>Lag en while-løkke som teller ned fra 5 til 1, og skriver "Start!" til slutt.</li>
+        <li>Bruk for og range() til å skrive ut alle partall fra 0 til 10.</li>
+        <li>Lag en while-løkke som ber brukeren gjette et hemmelig tall (du bestemmer), til de gjetter riktig.</li>
+        <li>Bruk for til å gå gjennom navnet ditt og tell hvor mange vokaler det er.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    © Python-intro — while og for-løkker for nybegynnere.
+  </footer>
+</body>
+</html>

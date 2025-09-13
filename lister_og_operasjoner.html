@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <title>Lister og enkle operasjoner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --code:#0b1020; --accent:#22c55e; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color: var(--ink); background: var(--bg); }
+    header, main, footer { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: var(--muted); }
+    a { color:#93c5fd; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display:inline-block; margin-top:8px; font-size:0.95rem; }
+    section { background: var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin:16px 0; }
+    h2 { margin: 0 0 10px; }
+    p, li { line-height: 1.6; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: var(--code); color:#d1d5db; padding:12px; border-radius:8px; overflow:auto; border:1px solid rgba(255,255,255,0.08); }
+    .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .tip { background: rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#c7f9cc; padding:8px 10px; border-radius:8px; }
+    .warn { background: rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#fde68a; padding:8px 10px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lister og enkle operasjoner</h1>
+    <p class="muted">Lær å lage og jobbe med lister: legge til, fjerne, og gå gjennom elementer.</p>
+    <a class="back" href="index.html">← Til hovedsiden</a>
+    &nbsp;|&nbsp;
+    <a class="back" href="intro_til_lokker.html">← Intro til løkker</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Hva er en liste?</h2>
+      <p>En liste er en samling av elementer som kan være tall, tekst eller andre typer data. Lister kan endres - du kan legge til og fjerne elementer[164][176].</p>
+      
+<pre><code># Lage lister
+tall_liste = [1, 2, 3, 4, 5]
+navn_liste = ["Anna", "Ola", "Kari"]
+blandet = [1, "hei", 3.14, True]
+tom_liste = []
+
+print(tall_liste)    # [1, 2, 3, 4, 5]
+print(navn_liste)    # ['Anna', 'Ola', 'Kari']
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Hente elementer fra liste (indeksering)</h2>
+      <p>Hvert element i en liste har en posisjon (indeks). Første element har indeks 0[164][176].</p>
+      
+      <div class="grid">
+<pre><code># Hente elementer
+frukt = ["eple", "banan", "appelsin"]
+
+print(frukt[0])    # "eple" (første)
+print(frukt[1])    # "banan" (andre)  
+print(frukt[2])    # "appelsin" (tredje)
+
+# Negative indekser (baklengs)
+print(frukt[-1])   # "appelsin" (siste)
+print(frukt[-2])   # "banan" (nest siste)
+</code></pre>
+
+<pre><code># Endre elementer
+frukt = ["eple", "banan", "appelsin"]
+frukt[1] = "pære"
+print(frukt)  # ["eple", "pære", "appelsin"]
+</code></pre>
+      </div>
+      
+      <div class="tip">Husk: Første element har indeks 0, ikke 1!</div>
+    </section>
+
+    <section>
+      <h2>Lengde av liste: len()</h2>
+      <p>len() forteller hvor mange elementer som er i lista[164].</p>
+      
+<pre><code>tall = [10, 20, 30, 40]
+print(len(tall))      # 4
+
+navn = ["Per", "Ane"]
+print(len(navn))      # 2
+
+tom = []
+print(len(tom))       # 0
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Legge til elementer: .append()</h2>
+      <p>.append() legger til et element på slutten av lista[165][169].</p>
+      
+<pre><code>dyr = ["hund", "katt"]
+print(dyr)           # ["hund", "katt"]
+
+dyr.append("fugl")
+print(dyr)           # ["hund", "katt", "fugl"]
+
+dyr.append("fisk")
+print(dyr)           # ["hund", "katt", "fugl", "fisk"]
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Fjerne elementer</h2>
+      <div class="grid">
+<pre><code># .remove() - fjern første forekomst
+farger = ["rød", "blå", "grønn", "blå"]
+farger.remove("blå")
+print(farger)  # ["rød", "grønn", "blå"]
+</code></pre>
+
+<pre><code># .pop() - fjern siste element
+tall = [1, 2, 3, 4]
+siste = tall.pop()
+print(siste)     # 4
+print(tall)      # [1, 2, 3]
+
+# .pop(indeks) - fjern på bestemt plass
+første = tall.pop(0)
+print(første)    # 1  
+print(tall)      # [2, 3]
+</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>for-løkker med lister</h2>
+      <p>for-løkker er perfekte for å gå gjennom alle elementer i en liste[167]:</p>
+      
+      <div class="grid">
+<pre><code># Gå gjennom alle elementer
+hobbyer = ["fotball", "lesing", "gaming"]
+
+for hobby in hobbyer:
+    print("Jeg liker", hobby)
+
+# Utskrift:
+# Jeg liker fotball
+# Jeg liker lesing  
+# Jeg liker gaming
+</code></pre>
+
+<pre><code># Med indeks og verdi
+navn = ["Anna", "Ola", "Kari"]
+
+for i in range(len(navn)):
+    print(f"{i}: {navn[i]}")
+
+# Utskrift:
+# 0: Anna
+# 1: Ola
+# 2: Kari
+</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Praktisk eksempel: Handleliste</h2>
+<pre><code>print("=== Handleliste ===")
+handleliste = []
+
+# Legg til varer
+handleliste.append("melk")
+handleliste.append("brød") 
+handleliste.append("epler")
+
+print("Du må handle:")
+for vare in handleliste:
+    print("-", vare)
+
+# Fjern en vare
+handleliste.remove("brød")
+print("\nOppdatert liste:")
+for vare in handleliste:
+    print("-", vare)
+
+print(f"\nDu har {len(handleliste)} varer igjen å handle.")
+</code></pre>
+    </section>
+
+    <section>
+      <h2>Oppgaver</h2>
+      <ol>
+        <li>Lag en liste med 3 favorittfilmer og skriv dem ut med en for-løkke.</li>
+        <li>Lag en tom liste, legg til 5 tall med .append(), og regn ut summen av alle tallene.</li>
+        <li>Lag en liste med navn, og skriv ut bare de som starter med "A".</li>
+        <li>Lag en enkel "gjøremål"-liste hvor brukeren kan legge til og fjerne oppgaver.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    © Python-intro — Lister og grunnleggende operasjoner.
+  </footer>
+</body>
+</html>

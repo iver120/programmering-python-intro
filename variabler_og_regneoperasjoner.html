@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <title>Variabler og regneoperasjoner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --ink:#e5e7eb; --muted:#9ca3af; --code:#0b1020; --accent:#22c55e; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color: var(--ink); background: var(--bg); }
+    header, main, footer { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: var(--muted); }
+    a { color:#93c5fd; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { display:inline-block; margin-top:8px; font-size:0.95rem; }
+    section { background: var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin:16px 0; }
+    h2 { margin: 0 0 10px; }
+    p, li { line-height: 1.6; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: var(--code); color:#d1d5db; padding:12px; border-radius:8px; overflow:auto; border:1px solid rgba(255,255,255,0.08); }
+    .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .tip { background: rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#c7f9cc; padding:8px 10px; border-radius:8px; }
+    .warn { background: rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#fde68a; padding:8px 10px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Variabler og regneoperasjoner</h1>
+    <p class="muted">Repetisjon av variabler og de fire regneartene i Python: +, -, *, /, med enkle oppgaver og et mini‑spill.</p>
+    <a class="back" href="index.html">← Til hovedsiden</a>
+    &nbsp;|&nbsp;
+    <a class="back" href="variabler_og_vilkar.html">← Variabler og vilkår</a>
+    &nbsp;|&nbsp;
+    <a class="back" href="repetisjon_datatyper_lower.html">← Repetisjon + Datatyper og .lower()</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Variabler kort repetisjon</h2>
+      <p>En variabel er et navn som peker til en verdi, for eksempel et tall (int/float) eller tekst (str), og brukes i uttrykk og utskrift.</p>
+<pre><code>navn = "Mina"
+alder = 14
+hoyde = 1.60
+print("Hei", navn, "- alder:", alder)</code></pre>
+    </section>
+
+    <section>
+      <h2>De fire regneartene</h2>
+      <div class="grid">
+<pre><code># 1) Addisjon (pluss)
+a = 7
+b = 5
+sum_ = a + b
+print("Sum:", sum_)  # 12</code></pre>
+
+<pre><code># 2) Subtraksjon (minus)
+a = 7
+b = 5
+diff = a - b
+print("Differanse:", diff)  # 2</code></pre>
+
+<pre><code># 3) Multiplikasjon (gange)
+a = 7
+b = 5
+prod = a * b
+print("Produkt:", prod)  # 35</code></pre>
+
+<pre><code># 4) Divisjon (dele)
+a = 7
+b = 2
+kvot = a / b
+print("Kvotient:", kvot)  # 3.5 (flyttall i Python 3)</code></pre>
+      </div>
+      <div class="warn">Merk: I Python 3 gir operatoren / alltid et desimaltall (float) når man deler, selv om begge operandene er heltall.</div>
+    </section>
+
+    <section>
+      <h2>Input + regning (uten nye konsepter)</h2>
+      <p>input() gir tekst, så konverter til heltall med int(...) før du regner og sammenligner tall.</p>
+<pre><code>a_txt = input("Første tall: ")
+b_txt = input("Andre tall: ")
+
+a = int(a_txt)
+b = int(b_txt)
+
+print("Sum:", a + b)
+print("Forskjell:", a - b)
+print("Produkt:", a * b)
+print("Kvotient:", a / b)  # gir float</code></pre>
+      <div class="tip">Robust feilhåndtering kommer senere; her antar vi at brukeren skriver tall.</div>
+    </section>
+
+    <section>
+      <h2>Mini‑spill: HP (liv) med enkel aritmetikk</h2>
+      <p>Et kort tekstbasert eksempel der en spiller mister og får liv ved å bruke +, -, * og /, uten løkker og bare med vilkår.</p>
+<pre><code>print("=== Mini-spill: Hulen ===")
+navn = input("Hva heter helten? ")
+hp = 10
+print("Hei", navn + "!", "Du starter med", hp, "HP.")
+
+# Hendelse 1: Du tråkker på en felle (3 skade)
+skade = 3
+hp = hp - skade
+print("Au! Fellen gjør", skade, "skade. HP:", hp)
+
+# Hendelse 2: Du finner en liten potion (+2 HP)
+heal = 2
+hp = hp + heal
+print("Du drikker en potion og får +", heal, "HP. HP:", hp)
+
+# Hendelse 3: En fiende kritter (skaden dobles)
+base_skade = 2
+krittskade = base_skade * 2
+hp = hp - krittskade
+print("Fienden kritter!", krittskade, "skade. HP:", hp)
+
+# Hendelse 4: Du finner en skikkelig potion (halve veien tilbake til 10)
+mangler = 10 - hp
+hp = hp + (mangler / 2)   # legg til halvparten av det som mangler
+print("Stor potion! Du får tilbake halvparten av det som mangler. HP:", hp)
+
+# Sjekk om du overlever
+if hp <= 0:
+    print("Oh no... Helten falt i hulen.")
+else:
+    print("Du overlever! Videre til neste del av eventyret!")</code></pre>
+      <div class="tip">Her brukes minus for å miste liv, pluss for å helbrede, gange for kritisk skade, og deling for “halvparten tilbake”.</div>
+    </section>
+
+    <section>
+      <h2>Små oppgaver</h2>
+      <ol>
+        <li>Be om to tall og skriv ut summen, differansen, produktet og kvotienten i hver sin linje.</li>
+        <li>Lag en variabel budsjett og en variabel pris, og print “Kjøp” hvis pris ≤ budsjett, ellers “For dyrt”.</li>
+        <li>Utvid HP‑spillet: legg til en ny hendelse der du enten mister 1 HP eller får 1 HP basert på brukerens valg (ja/nei).</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    © Python-intro — Variabler og de fire regneartene i praksis.
+  </footer>
+</body>
+</html>
